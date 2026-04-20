@@ -153,6 +153,11 @@
   .reveal-stagger > .reveal:nth-child(4) { transition-delay: 360ms; }
   .reveal-stagger > .reveal:nth-child(5) { transition-delay: 480ms; }
 
+  /* Nuke the Next.js dev indicator badge that sits over the UI */
+  nextjs-portal {
+    display: none !important;
+  }
+
   /* ── Underline expand on hover ── */
   .hover-line {
     position: relative;
