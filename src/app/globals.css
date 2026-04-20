@@ -1,0 +1,194 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-space-grotesk);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* ═══════════════════════════════════════════
+   ARENA ONYX — Stitch Design Tokens
+   Creative North Star: "The Arena's Edge"
+   ═══════════════════════════════════════════ */
+
+:root {
+  --background: #0A0A0A;
+  --foreground: #E8E6E1;
+  --card: #141414;
+  --card-foreground: #E8E6E1;
+  --popover: #0E0E0E;
+  --popover-foreground: #E8E6E1;
+  --primary: #aad1a6;
+  --primary-foreground: #163719;
+  --secondary: #e4c377;
+  --secondary-foreground: #3e2e00;
+  --muted: #1c1b1b;
+  --muted-foreground: #8c9389;
+  --accent: #1E3F20;
+  --accent-foreground: #c5edc1;
+  --destructive: #ef4444;
+  --border: rgba(66, 72, 64, 0.25);
+  --input: rgba(66, 72, 64, 0.35);
+  --ring: #e4c377;
+  --radius: 0rem;
+}
+
+.dark {
+  --background: #0A0A0A;
+  --foreground: #E8E6E1;
+  --card: #141414;
+  --card-foreground: #E8E6E1;
+  --popover: #0E0E0E;
+  --popover-foreground: #E8E6E1;
+  --primary: #aad1a6;
+  --primary-foreground: #163719;
+  --secondary: #e4c377;
+  --secondary-foreground: #3e2e00;
+  --muted: #1c1b1b;
+  --muted-foreground: #8c9389;
+  --accent: #1E3F20;
+  --accent-foreground: #c5edc1;
+  --destructive: #ef4444;
+  --border: rgba(66, 72, 64, 0.25);
+  --input: rgba(66, 72, 64, 0.35);
+  --ring: #e4c377;
+}
+
+/* ── Base ── */
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  html {
+    @apply scroll-smooth;
+  }
+}
+
+/* ═══════════════════════════════════════════
+   FILM GRAIN — Cinematic Texture Overlay
+   ═══════════════════════════════════════════ */
+@layer utilities {
+  .film-grain::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.035;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ── Marquee ── */
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 30s linear infinite;
+  }
+  .marquee-track:hover {
+    animation-play-state: paused;
+  }
+
+  /* ── Reveal on Scroll ── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── Stagger children ── */
+  .reveal-stagger > .reveal:nth-child(1) { transition-delay: 0ms; }
+  .reveal-stagger > .reveal:nth-child(2) { transition-delay: 120ms; }
+  .reveal-stagger > .reveal:nth-child(3) { transition-delay: 240ms; }
+  .reveal-stagger > .reveal:nth-child(4) { transition-delay: 360ms; }
+  .reveal-stagger > .reveal:nth-child(5) { transition-delay: 480ms; }
+
+  /* ── Underline expand on hover ── */
+  .hover-line {
+    position: relative;
+  }
+  .hover-line::after {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1px;
+    background: #e4c377;
+    transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hover-line:hover::after {
+    width: 100%;
+  }
+
+  /* ── Image parallax container ── */
+  .parallax-img {
+    will-change: transform;
+    transition: transform 0.1s linear;
+  }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(170, 209, 166, 0.3); }
+  50% { box-shadow: 0 0 20px 4px rgba(170, 209, 166, 0.15); }
+}
