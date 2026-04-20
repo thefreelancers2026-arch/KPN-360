@@ -45,6 +45,7 @@ export default function AdminDashboard() {
 
   useEffect(() => {
     // Listen to Leads
+    if (!db) return;
     const qLeads = query(collection(db, "leads"), orderBy("createdAt", "desc"));
     const unsubLeads = onSnapshot(qLeads, (snapshot) => {
       const fetchedLeads = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }) as Lead);
@@ -62,7 +63,7 @@ export default function AdminDashboard() {
   }, []);
 
   useEffect(() => {
-    if (!date) return;
+    if (!date || !db) return;
     const dateStr = format(date, "yyyy-MM-dd");
     const qSlots = query(collection(db, "slots"), where("date", "==", dateStr));
     
@@ -74,7 +75,7 @@ export default function AdminDashboard() {
   }, [date]);
 
   const toggleSlot = async (time: string) => {
-    if (!date) return;
+    if (!date || !db) return;
     const dateStr = format(date, "yyyy-MM-dd");
     const slotId = `${dateStr}-${time.split(':')[0]}`;
     const existingSlot = slots.find(s => s.time === time);
