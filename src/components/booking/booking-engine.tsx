@@ -77,8 +77,17 @@ export default function BookingEngine() {
   }, [date]);
 
   useEffect(() => {
-    const handlePreselect = (e: CustomEvent<{ slotTime: string }>) => {
-      const slot = TIME_SLOTS.find(s => s.key === e.detail.slotTime);
+    const handlePreselect = (e: CustomEvent<{ type: string }>) => {
+      let slotTimeKey = "06:00 - 07:00"; // fallback
+      if (e.detail.type === "offpeak") {
+        slotTimeKey = "06:00 - 07:00";
+      } else if (e.detail.type === "primetime") {
+        slotTimeKey = "18:00 - 19:00";
+      } else if (e.detail.type === "training") {
+        slotTimeKey = "06:00 - 07:00";
+      }
+
+      const slot = TIME_SLOTS.find(s => s.key === slotTimeKey);
       if (slot) {
         setSelectedSlot(slot);
         setIsFormOpen(true);
@@ -93,8 +102,8 @@ export default function BookingEngine() {
         }, 1000);
       }
     };
-    window.addEventListener('preselectSlot', handlePreselect as EventListener);
-    return () => window.removeEventListener('preselectSlot', handlePreselect as EventListener);
+    window.addEventListener('preselect-slot', handlePreselect as EventListener);
+    return () => window.removeEventListener('preselect-slot', handlePreselect as EventListener);
   }, []);
 
   const getStatus = (key: string): SlotStatus => {
@@ -157,12 +166,6 @@ export default function BookingEngine() {
           <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-[-0.03em] text-white max-w-lg mb-6">
             Pick a time. Own the pitch.
           </h2>
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#e4c377]/10 border border-[#e4c377]/20 align-middle">
-            <span className="text-[#e4c377] text-sm leading-none">⚡</span>
-            <span className="font-sans text-[10px] font-medium tracking-[0.05em] uppercase text-[#e4c377]">
-              Prime slots (6 PM–10 PM) fill up 2 days in advance. Book early.
-            </span>
-          </div>
         </div>
         <p className="reveal font-sans text-[13px] font-light text-[#8c9389] mb-16 max-w-md leading-relaxed">
           The best slots go fast — especially after 6 PM. Lock yours in before someone else does.
@@ -173,13 +176,21 @@ export default function BookingEngine() {
           {/* Calendar */}
           <div className="lg:col-span-4 reveal">
             <div className="space-y-6 max-w-[320px]">
-              <div className="space-y-1">
-                <span className="font-sans text-[9px] font-medium tracking-[0.3em] uppercase text-[#8c9389]">
-                  Step 01
-                </span>
-                <h3 className="font-heading text-lg font-bold text-[#E8E6E1]">
-                  When are you playing?
-                </h3>
+              <div className="space-y-3">
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500 rounded-full w-fit">
+                  <span className="text-[#0A0A0A] text-xs leading-none">⚡</span>
+                  <span className="font-sans text-[10px] font-semibold text-[#0A0A0A]">
+                    Prime slots (6 PM–10 PM) fill up 2 days in advance. Book early.
+                  </span>
+                </div>
+                <div className="mt-4">
+                  <span className="font-sans text-[9px] font-medium tracking-[0.3em] uppercase text-[#8c9389] block mb-1">
+                    Step 01
+                  </span>
+                  <h3 className="font-heading text-lg font-bold text-[#E8E6E1]">
+                    When are you playing?
+                  </h3>
+                </div>
               </div>
               <div className="bg-[#0E0E0E] p-4 md:p-6 border border-[#2A2A2A] flex justify-center">
                 <Calendar
@@ -226,7 +237,7 @@ export default function BookingEngine() {
                         setSelectedSlot(slot);
                         setIsFormOpen(true);
                       }}
-                      className={`py-5 min-h-[48px] font-sans text-[11px] md:text-xs tracking-wider transition-all duration-300 ${
+                      className={`py-5 min-h-[44px] min-w-[64px] flex items-center justify-center font-sans text-[11px] md:text-xs tracking-wider transition-all duration-300 ${
                         blocked
                           ? "bg-[#0A0A0A] text-[#2A2A2A] line-through cursor-not-allowed"
                           : "bg-[#141414] text-[#E8E6E1] hover:bg-[#e4c377] hover:text-[#0A0A0A] font-medium"

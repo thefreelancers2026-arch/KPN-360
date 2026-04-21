@@ -132,12 +132,12 @@ export default function Pricing() {
               <a
                 href="#booking"
                 onClick={(e) => {
-                  let slotTime = "";
-                  if (p.label === "Off-Peak Hours") slotTime = "06:00 - 07:00";
-                  else if (p.label === "Prime Time") slotTime = "18:00 - 19:00";
-                  else slotTime = "06:00 - 07:00"; // fallback for Pro Training
+                  let type = "";
+                  if (p.label === "Off-Peak Hours") type = "offpeak";
+                  else if (p.label === "Prime Time") type = "primetime";
+                  else type = "training"; 
                   
-                  window.dispatchEvent(new CustomEvent('preselectSlot', { detail: { slotTime } }));
+                  window.dispatchEvent(new CustomEvent('preselect-slot', { detail: { type } }));
                 }}
                 className="inline-flex items-center gap-2 font-sans text-[10px] font-medium tracking-[0.2em] uppercase text-[#e4c377] hover:text-[#ffdf98] transition-colors group/cta"
               >

@@ -35,25 +35,27 @@ export default function StickyCTA() {
   if (!isVisible) return null;
 
   return (
-    <div className="fixed bottom-0 left-0 right-0 z-[100] flex justify-center pointer-events-none px-0 md:px-6 md:bottom-8 animate-in slide-in-from-bottom-full duration-500 fade-in-0">
-      <div className="w-full md:w-auto md:min-w-[480px] flex shadow-[0_0_40px_rgba(0,0,0,0.8)] border-t md:border border-[#424840]/30 pointer-events-auto bg-[#0A0A0A]/80 backdrop-blur-md">
-        {/* TODO: 91 96555 50051 placeholder */}
+    <div
+      className={`fixed bottom-0 left-0 right-0 z-50 flex justify-center px-4 md:px-0 py-4 md:py-6 bg-[rgba(0,0,0,0.85)] backdrop-blur-md border-t border-[#424840]/30 transition-transform duration-500 ease-out ${
+        isVisible ? "translate-y-0" : "translate-y-[100%]"
+      }`}
+    >
+      <div className="w-full md:w-auto flex flex-col sm:flex-row gap-3">
+        {/* TODO: replace with actual WhatsApp number */}
         <a
           href="https://wa.me/919655550051"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 flex items-center justify-center gap-2 py-4 md:py-5 bg-[#1E3F20] hover:bg-[#2d5a30] text-[#c5edc1] font-sans text-[11px] font-medium tracking-[0.2em] uppercase transition-colors"
+          className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-[12px] bg-[#25D366] text-white rounded-[12px] font-sans text-sm font-semibold tracking-wide hover:bg-[#1EBE5A] transition-colors min-h-[44px]"
         >
-          <MessageCircle className="w-4 h-4" />
-          <span>Book on WhatsApp</span>
+          <span>📲 WhatsApp Us</span>
         </a>
-        <Link
+        <a
           href="#booking"
-          className="flex-1 flex items-center justify-center gap-2 py-4 md:py-5 bg-[#e4c377] hover:bg-white text-[#0A0A0A] font-sans text-[11px] font-bold tracking-[0.15em] uppercase transition-colors"
+          className="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-[12px] bg-[#e4c377] text-[#0A0A0A] rounded-[12px] font-sans text-sm font-bold tracking-wide hover:bg-[#ffdf98] transition-colors min-h-[44px]"
         >
-          <CalendarDays className="w-4 h-4" />
-          <span>Pick a Slot</span>
-        </Link>
+          <span>Pick a Slot →</span>
+        </a>
       </div>
     </div>
   );

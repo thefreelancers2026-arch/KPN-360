@@ -3,7 +3,7 @@ import Marquee from "@/components/sections/marquee";
 import Showcase from "@/components/sections/showcase";
 import Pricing from "@/components/sections/pricing";
 import BookingEngine from "@/components/booking/booking-engine";
-import StickyCTA from "@/components/sticky-cta";
+import StickyCTA from "@/components/ui/sticky-cta";
 import Link from "next/link";
 import { AtSign, MapPin } from "lucide-react";
 
