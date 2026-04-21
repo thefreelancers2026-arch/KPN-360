@@ -3,12 +3,14 @@ import Marquee from "@/components/sections/marquee";
 import Showcase from "@/components/sections/showcase";
 import Pricing from "@/components/sections/pricing";
 import BookingEngine from "@/components/booking/booking-engine";
+import StickyCTA from "@/components/sticky-cta";
 import Link from "next/link";
 import { AtSign, MapPin } from "lucide-react";
 
 export default function Home() {
   return (
     <main className="relative">
+      <StickyCTA />
       <Hero />
       <Marquee />
       <Showcase />

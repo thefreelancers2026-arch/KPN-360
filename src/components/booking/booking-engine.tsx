@@ -76,6 +76,27 @@ export default function BookingEngine() {
     return () => unsub();
   }, [date]);
 
+  useEffect(() => {
+    const handlePreselect = (e: CustomEvent<{ slotTime: string }>) => {
+      const slot = TIME_SLOTS.find(s => s.key === e.detail.slotTime);
+      if (slot) {
+        setSelectedSlot(slot);
+        setIsFormOpen(true);
+      }
+      
+      const bookingSection = document.getElementById("booking");
+      if (bookingSection) {
+        bookingSection.classList.add("bg-[#1E3F20]/10");
+        bookingSection.style.transition = "background-color 0.5s ease";
+        setTimeout(() => {
+          bookingSection.classList.remove("bg-[#1E3F20]/10");
+        }, 1000);
+      }
+    };
+    window.addEventListener('preselectSlot', handlePreselect as EventListener);
+    return () => window.removeEventListener('preselectSlot', handlePreselect as EventListener);
+  }, []);
+
   const getStatus = (key: string): SlotStatus => {
     const s = slots.find((s) => s.time === key);
     return s ? s.status : "available";
@@ -133,11 +154,17 @@ export default function BookingEngine() {
               Takes 30 Seconds
             </span>
           </div>
-          <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-[-0.03em] text-white max-w-lg">
+          <h2 className="font-heading text-4xl md:text-5xl font-bold tracking-[-0.03em] text-white max-w-lg mb-6">
             Pick a time. Own the pitch.
           </h2>
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#e4c377]/10 border border-[#e4c377]/20 align-middle">
+            <span className="text-[#e4c377] text-sm leading-none">⚡</span>
+            <span className="font-sans text-[10px] font-medium tracking-[0.05em] uppercase text-[#e4c377]">
+              Prime slots (6 PM–10 PM) fill up 2 days in advance. Book early.
+            </span>
+          </div>
         </div>
-        <p className="reveal font-sans text-sm font-light text-[#8c9389] mb-16 max-w-md">
+        <p className="reveal font-sans text-[13px] font-light text-[#8c9389] mb-16 max-w-md leading-relaxed">
           The best slots go fast — especially after 6 PM. Lock yours in before someone else does.
         </p>
 
@@ -199,7 +226,7 @@ export default function BookingEngine() {
                         setSelectedSlot(slot);
                         setIsFormOpen(true);
                       }}
-                      className={`py-4 font-sans text-xs tracking-wider transition-all duration-300 ${
+                      className={`py-5 min-h-[48px] font-sans text-[11px] md:text-xs tracking-wider transition-all duration-300 ${
                         blocked
                           ? "bg-[#0A0A0A] text-[#2A2A2A] line-through cursor-not-allowed"
                           : "bg-[#141414] text-[#E8E6E1] hover:bg-[#e4c377] hover:text-[#0A0A0A] font-medium"

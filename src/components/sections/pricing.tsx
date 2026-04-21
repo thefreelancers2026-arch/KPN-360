@@ -129,13 +129,21 @@ export default function Pricing() {
                 ))}
               </ul>
 
-              <Link
+              <a
                 href="#booking"
+                onClick={(e) => {
+                  let slotTime = "";
+                  if (p.label === "Off-Peak Hours") slotTime = "06:00 - 07:00";
+                  else if (p.label === "Prime Time") slotTime = "18:00 - 19:00";
+                  else slotTime = "06:00 - 07:00"; // fallback for Pro Training
+                  
+                  window.dispatchEvent(new CustomEvent('preselectSlot', { detail: { slotTime } }));
+                }}
                 className="inline-flex items-center gap-2 font-sans text-[10px] font-medium tracking-[0.2em] uppercase text-[#e4c377] hover:text-[#ffdf98] transition-colors group/cta"
               >
                 Lock this in
                 <ArrowDownRight className="w-3 h-3 transition-transform group-hover/cta:translate-x-0.5 group-hover/cta:translate-y-0.5" />
-              </Link>
+              </a>
             </div>
           ))}
         </div>
