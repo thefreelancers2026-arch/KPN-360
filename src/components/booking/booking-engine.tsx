@@ -176,14 +176,13 @@ export default function BookingEngine() {
           {/* Calendar */}
           <div className="lg:col-span-4 reveal">
             <div className="space-y-6 max-w-[320px]">
-              <div className="space-y-3">
-                <div className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-500 rounded-full w-fit">
-                  <span className="text-[#0A0A0A] text-xs leading-none">⚡</span>
-                  <span className="font-sans text-[10px] font-semibold text-[#0A0A0A]">
-                    Prime slots (6 PM–10 PM) fill up 2 days in advance. Book early.
+              <div className="space-y-5">
+                <div className="flex items-center gap-3 pl-3 border-l-2 border-[#e4c377]/60 py-1">
+                  <span className="font-sans text-[10px] font-medium tracking-[0.15em] uppercase text-[#e4c377]/80">
+                    ⚡ Prime slots (6 PM–10 PM) fill up 2 days in advance — book early
                   </span>
                 </div>
-                <div className="mt-4">
+                <div>
                   <span className="font-sans text-[9px] font-medium tracking-[0.3em] uppercase text-[#8c9389] block mb-1">
                     Step 01
                   </span>
