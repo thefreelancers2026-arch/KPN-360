@@ -57,7 +57,7 @@ export default function Home() {
               </span>
               <p className="font-sans text-sm font-light text-[#8c9389] leading-relaxed flex items-start gap-2">
                 <MapPin className="w-3.5 h-3.5 mt-0.5 shrink-0 text-[#424840]" />
-                Anna Nagar, Kuppanatham,
+                Shakti Nagar, Aladi Road to Cuddalore Bypass, near North Periyar Nagar,
                 <br />
                 Virudhachalam, Tamil Nadu 606001
               </p>
@@ -68,13 +68,13 @@ export default function Home() {
               </span>
               <div className="flex items-center gap-4">
                 <a
-                  href="https://www.instagram.com/kpn360turf"
+                  href="https://www.instagram.com/vaadivaasal.turf"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover-line inline-flex items-center gap-2 font-sans text-sm font-light text-[#8c9389] hover:text-[#E8E6E1] transition-colors"
                 >
                   <AtSign className="w-3.5 h-3.5" />
-                  kpn360turf
+                  vaadivaasal.turf
                 </a>
               </div>
             </div>
@@ -91,7 +91,7 @@ export default function Home() {
           {/* Bottom */}
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-[#424840]/10">
             <span suppressHydrationWarning className="font-sans text-[10px] font-light text-[#424840] tracking-wider">
-              © {new Date().getFullYear()} KPN 360° Turf. All rights reserved.
+              © {new Date().getFullYear()} Vaadivaasal Eco-Friendly Turf. All rights reserved.
             </span>
             <span className="font-heading text-[10px] font-medium tracking-[0.2em] text-[#424840] uppercase">
               Virudhachalam, Tamil Nadu

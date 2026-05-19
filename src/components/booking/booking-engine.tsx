@@ -132,7 +132,7 @@ export default function BookingEngine() {
       } else {
         console.warn("Database not connected. Skipping save, but redirecting to WhatsApp.");
       }
-      const msg = `Hey! 🏟️ I'd like to book KPN 360 Turf.\n\n📅 Date: ${leadData.slotDate}\n⏰ Time: ${selectedSlot.range}\n👤 Name: ${name}\n👥 Players: ${players}\n\nPlease confirm!`;
+      const msg = `Hey! 🏟️ I'd like to book Vaadivaasal Eco-Friendly Turf.\n\n📅 Date: ${leadData.slotDate}\n⏰ Time: ${selectedSlot.range}\n👤 Name: ${name}\n👥 Players: ${players}\n\nPlease confirm!`;
       window.open(
         `https://wa.me/${OWNER_PHONE}?text=${encodeURIComponent(msg)}`,
         "_blank"

@@ -27,10 +27,10 @@ export default function Navbar() {
         {/* ─── Logo ─── */}
         <Link href="/" className="group flex items-baseline gap-1.5">
           <span className="font-heading text-lg font-bold tracking-tight text-[#E8E6E1] group-hover:text-[#aad1a6] transition-colors">
-            KPN
+            VAADIVAASAL
           </span>
           <span className="font-heading text-[10px] font-medium tracking-[0.25em] text-[#e4c377] uppercase">
-            360°
+            TURF
           </span>
         </Link>
 

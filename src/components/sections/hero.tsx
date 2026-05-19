@@ -17,7 +17,7 @@ export default function Hero() {
       <div className="absolute inset-0">
         <Image
           src="/hero-cinematic.png"
-          alt="KPN 360 Turf — 360° enclosed arena under floodlights"
+          alt="Vaadivaasal Eco-Friendly Turf — enclosed arena under floodlights"
           fill
           className="object-cover object-center"
           priority
@@ -81,7 +81,7 @@ export default function Hero() {
               <div className="flex items-center gap-2">
                 <span className="text-[#e4c377] text-sm tracking-widest leading-none">★★★★★</span>
                 <span className="font-sans text-[11px] font-light text-[#8c9389]">
-                  Rated 4.9 by 120+ players
+                  Rated 4.7 by 120+ players on Justdial
                 </span>
               </div>
               <div className="hidden md:block w-1 h-1 rounded-full bg-[#424840]/50" />

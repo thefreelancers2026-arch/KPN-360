@@ -16,7 +16,7 @@ const spaceGrotesk = Space_Grotesk({
 });
 
 export const metadata: Metadata = {
-  title: "KPN 360° Turf — Virudhachalam",
+  title: "Vaadivaasal Eco-Friendly Turf — Virudhachalam",
   description:
     "11,500 Sq.Ft. FIFA Pro certified 360° enclosed sports arena in Virudhachalam. Book your slot instantly via WhatsApp.",
 };

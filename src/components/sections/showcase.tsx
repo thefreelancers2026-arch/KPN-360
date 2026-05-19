@@ -21,9 +21,9 @@ const features = [
     body: "High-bay LED floodlights. Every corner lit. Every blade visible. When the sun goes down, the intensity goes up. This is where legends practice.",
   },
   {
-    label: "The Program",
-    title: "Coaching that builds athletes, not hobbyists.",
-    body: "₹1,500/month gets you certified coaching — fitness drills, ball control, tactical IQ. Whether you're 14 or 40, you walk out sharper than you walked in.",
+    label: "The Program & Events",
+    title: "Dedicated coaching & competitive tournaments.",
+    body: "Offers dedicated cricket and football coaching classes led by experienced trainers. The venue also frequently hosts regional tournaments and local trophies for the community.",
   },
 ];
 
@@ -64,7 +64,7 @@ export default function Showcase() {
         <div className="lg:col-span-5 relative h-[500px] lg:h-auto overflow-hidden reveal">
           <Image
             src="/hero-night-v4.png"
-            alt="KPN 360 Turf interior night view"
+            alt="Vaadivaasal Eco-Friendly Turf interior night view"
             fill
             className="object-cover object-center"
           />
